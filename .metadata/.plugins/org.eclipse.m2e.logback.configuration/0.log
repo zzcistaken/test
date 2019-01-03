@@ -1,0 +1,25 @@
+2019-01-03 20:49:08,376 [Worker-19] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using NULL lifecycle mapping for MavenProject: com.zzc.test:java:0.0.1-SNAPSHOT @ D:\workspace\github\test\java\pom.xml.
+2019-01-03 20:49:46,656 [Worker-7] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using NULL lifecycle mapping for MavenProject: com.zzc.test:java:0.0.1-SNAPSHOT @ D:\workspace\github\test\java\pom.xml.
+2019-01-03 20:50:40,322 [Worker-15] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.zzc.test:mybatis:0.0.1-SNAPSHOT @ D:\workspace\github\test\java\mybatis\pom.xml.
+2019-01-03 20:50:41,595 [Worker-15] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /mybatis/src/main/java
+2019-01-03 20:50:41,598 [Worker-15] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /mybatis/src/main/resources
+2019-01-03 20:50:41,600 [Worker-15] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /mybatis/src/test/java
+2019-01-03 20:50:41,600 [Worker-15] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /mybatis/src/test/resources
+2019-01-03 20:50:43,279 [Worker-13] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2019-01-03 20:50:43,308 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-01-03 20:50:43,313 [Worker-13] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2019-01-03 20:50:43,315 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-01-03 20:50:44,480 [Worker-3] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using NULL lifecycle mapping for MavenProject: com.zzc.test:java:0.0.1-SNAPSHOT @ D:\workspace\github\test\java\pom.xml.
+2019-01-03 20:50:45,055 [Worker-3] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.zzc.test:mybatis:0.0.1-SNAPSHOT @ D:\workspace\github\test\java\mybatis\pom.xml.
+2019-01-03 20:50:45,720 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2019-01-03 20:50:45,723 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-01-03 20:50:45,725 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2019-01-03 20:50:45,727 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-01-03 20:51:01,480 [Worker-19] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2019-01-03 20:51:01,502 [Worker-19] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-01-03 20:51:01,512 [Worker-19] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2019-01-03 20:51:01,517 [Worker-19] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-01-03 20:51:16,330 [Worker-16] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2019-01-03 20:51:16,334 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-01-03 20:51:16,338 [Worker-16] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2019-01-03 20:51:16,341 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
