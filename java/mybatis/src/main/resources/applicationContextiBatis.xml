@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:aop="http://www.springframework.org/schema/aop"
+     xmlns:tx="http://www.springframework.org/schema/tx"
+     xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="
+   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+      <property name="driverClassName" value="${driverClassName}" />
+      <property name="url" value="${url}" />
+      <property name="username" value="${username}" />
+      <property name="password" value="${password}" />
+      <property name="initialSize" value="${initialSize}" />
+      <property name="maxActive" value="${maxActive}" />
+      <property name="minIdle" value="${minIdle}" />
+      <property name="maxIdle" value="${maxIdle}" />
+  </bean>
+ 
+  <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+      <property name="dataSource" ref="dataSource" />
+      <property name="configLocation" value="classpath:sql-map-config.xml" />
+  </bean>
+  
+  <bean id="sqlMapClientTemplate" class="org.springframework.orm.ibatis.SqlMapClientTemplate">
+      <property name="sqlMapClient" ref="sqlMapClient" />
+  </bean>
+  
+  <bean id="footBallServiceImpl101iBatis" class="ajdbc.service.impl.FootBallServiceImpl101iBatis">
+      <property name="sqlMapClientTemplate" ref="sqlMapClientTemplate" />
+  </bean>
+  
+  <context:property-placeholder location="classpath:jdbc.properties" />
+</beans>
