@@ -5,7 +5,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.zzc.test.mybatis.pojo.Student;
 import com.zzc.test.mybatis.util.MybatisUtil;
 
-public class AddTwoStudent {
+public class AddTwoStudentAutoCommit {
 
 	public static void main(String[] args) {
 		
@@ -15,18 +15,18 @@ public class AddTwoStudent {
         s.setSal(101.00);
         
         //得到连接对象
-        SqlSession sqlSession = MybatisUtil.getSqlSession();
+        SqlSession sqlSession = MybatisUtil.getSqlSession2();
         
         try {
-        	//默认的commit级别是false-不自动提交
+        	//设置commit级别是true-自动提交
         	System.out.println(sqlSession.getConnection().getAutoCommit());
         	
-	        //连续插入两条记录，两个都回滚
+	        //连续插入两条记录，一个成功，另一个失败
 	        sqlSession.insert("StudentID.add", s);
 	        sqlSession.insert("StudentID.add", s);
 	        
 	        //手动提交
-	        sqlSession.commit();
+//	        sqlSession.commit();
 	        
 	        System.out.println("add success.");
         } catch(Exception e) {
