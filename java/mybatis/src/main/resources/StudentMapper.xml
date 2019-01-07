@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace属性是名称空间，必须唯一 -->
+<mapper namespace="StudentID">    
+
+    <!-- resultMap标签:映射实体与表 
+         type属性：表示实体全路径名
+         id属性：为实体与表的映射取一个任意的唯一的名字
+    -->
+    <resultMap type="com.zzc.test.mybatis.pojo.Student" id="studentMap">
+        <!-- id标签:映射主键属性
+             result标签：映射非主键属性
+             property属性:实体的属性名
+             column属性：表的字段名  
+        -->                         
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="sal" column="sal"/>
+    </resultMap>
+    
+    <insert id="add" parameterType="com.zzc.test.mybatis.pojo.Student">
+        INSERT INTO STUDENTS (ID, NAME, SAL) VALUES (#{id},#{name},#{sal});
+    </insert>
+    
+    <!--
+        查询根据id
+        resultMap这个属性代表是返回值类型，返回值的类型是Student，就是上面实体类型
+    -->
+    <select id="findById" parameterType="int" resultMap="studentMap">
+        SELECT * FROM STUDENTS WHERE id = #{id};
+    </select>
+    
+    
+    <!--
+        查询所有数据
+        返回值类型讲道理是List<Student>的，但我们只要写集合中的类型就行了
+    -->
+    <select id="findAll" resultMap="studentMap">
+        SELECT * FROM STUDENTS;
+    </select>
+    
+    
+    <!--根据id删除-->
+    <delete id="delete" parameterType="int">
+        DELETE FROM STUDENTS WHERE id=#{id};
+
+    </delete>
+    
+    
+    <!--更新-->
+    <update id="update" parameterType="com.zzc.test.mybatis.pojo.Student">
+
+        update students set name=#{name},sal=#{sal} where id=#{id};
+
+    </update>
+    
+    
+    <!--分页查询-->
+    <select id="pagination" parameterType="map" resultMap="studentMap">
+
+        /*根据key自动找到对应Map集合的value*/
+        select * from students limit #{start},#{end};
+
+    </select>
+    
+    
+    <!--多条件查询【动态SQL】-->
+    <!--会自动组合成一个正常的WHERE字句-->
+    <!--name值会从map中寻找-->
+
+    <select id="findByCondition" resultMap="studentMap" parameterType="map">
+
+        select * from students
+
+        <where>
+            <if test="name!=null">
+                and name=#{name}
+            </if>
+            <if test="sal!=null">
+                and <![CDATA[ sal < #{sal} ]]>
+            </if>
+        </where>
+
+    </select>
+    
+    
+    <!--动态更新-->
+    <!--不要忘了逗号-->
+    <update id="updateByConditions" parameterType="map">
+
+        update students
+        <set>
+            <if test="name!=null">
+                 name = #{name},
+            </if>
+            <if test="sal!=null">
+                 sal = #{sal},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+</mapper>
