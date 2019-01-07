@@ -31,6 +31,7 @@ public class AddTwoStudentSetCommit {
 	        
 	        //设置commit级别为false-不自动提交，再连续插入两条记录
 	        //理论上讲，应该两条都插入失败，实际上第一条插入成功
+	        //jdbc test里面，直接使用connection，是正常的
 	        sqlSession.getConnection().setAutoCommit(false);
 	        System.out.println(sqlSession.getConnection().getAutoCommit());	//false
 	        sqlSession.insert("StudentID.add", s3);
