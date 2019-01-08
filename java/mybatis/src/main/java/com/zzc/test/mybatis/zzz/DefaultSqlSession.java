@@ -33,6 +33,11 @@ public class DefaultSqlSession implements SqlSession {
     this.autoCommit = autoCommit;
     System.out.println("DefaultSqlSession construct end.");
   }
+  
+  //增加修改autoCommit的方法，验证AddTwoStudent里的案例
+  public void setAutoCommit (boolean autoCommit) {
+	  this.autoCommit = autoCommit;
+  }
 
   public DefaultSqlSession(Configuration configuration, Executor executor) {
     this(configuration, executor, false);
@@ -127,6 +132,7 @@ public class DefaultSqlSession implements SqlSession {
   }
 
   public int update(String statement, Object parameter) {
+	  System.out.println("DefaultSqlSession -- update(...)");
     try {
       dirty = true;
       MappedStatement ms = configuration.getMappedStatement(statement);
@@ -151,6 +157,7 @@ public class DefaultSqlSession implements SqlSession {
   }
 
   public void commit(boolean force) {
+	  System.out.println("DefaultSqlSession -- commit() : " + force);
     try {
       executor.commit(isCommitOrRollbackRequired(force));
       dirty = false;
@@ -166,6 +173,7 @@ public class DefaultSqlSession implements SqlSession {
   }
 
   public void rollback(boolean force) {
+	  System.out.println("DefaultSqlSession -- rollback() : " + force);
     try {
       executor.rollback(isCommitOrRollbackRequired(force));
       dirty = false;
@@ -187,6 +195,7 @@ public class DefaultSqlSession implements SqlSession {
   }
 
   public void close() {
+	  System.out.println("DefaultSqlSession -- close()");
     try {
       executor.close(isCommitOrRollbackRequired(false));
       dirty = false;

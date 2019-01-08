@@ -47,8 +47,6 @@ import org.apache.ibatis.session.LocalCacheScope;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.transaction.Transaction;
-import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
-import org.apache.ibatis.transaction.managed.ManagedTransactionFactory;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.TypeAliasRegistry;
 import org.apache.ibatis.type.TypeHandlerRegistry;
@@ -443,6 +441,9 @@ public class Configuration {
   public Executor newExecutor(Transaction transaction, ExecutorType executorType) {
     executorType = executorType == null ? defaultExecutorType : executorType;
     executorType = executorType == null ? ExecutorType.SIMPLE : executorType;
+    
+    System.out.println("Configuration newExecutor executorType: " + executorType.name());
+    
     Executor executor;
     if (ExecutorType.BATCH == executorType) {
       executor = new BatchExecutor(this, transaction);

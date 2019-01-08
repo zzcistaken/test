@@ -18,10 +18,11 @@ public class AddTwoStudent {
         
         try {
         	//默认的commit级别是false-不自动提交
-        	System.out.println(sqlSession.getConnection().getAutoCommit());
+//        	System.out.println(sqlSession.getConnection().getAutoCommit());
         	
         	//连续插入两条记录，两个都回滚
 	        sqlSession.insert("StudentID.add", s);
+	        System.out.println("=========================add one over=====================");
 	        sqlSession.insert("StudentID.add", s);
 	        
 	        //手动提交
@@ -30,11 +31,17 @@ public class AddTwoStudent {
 	        System.out.println("add success.");
         } catch(Exception e) {
         	e.printStackTrace();
+        	System.out.println("\n");
+        	System.out.println("=======================roll back begin=======================");
             sqlSession.rollback();
-            System.out.println("add fail");
+            System.out.println("=======================roll back end=======================");
+            System.out.println("\n");
         } finally {
+        	System.out.println("\n");
+        	System.out.println("=======================close begin=======================");
         	sqlSession.close();
-        	System.out.println("close session.");
+        	System.out.println("=======================close end=======================");
+        	System.out.println("\n");
         }
         
 	}

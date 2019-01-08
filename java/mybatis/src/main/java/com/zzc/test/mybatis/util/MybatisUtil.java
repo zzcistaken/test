@@ -21,7 +21,10 @@ public class MybatisUtil
 		try 
 		{
 			Reader reader = Resources.getResourceAsReader("mybatis.xml");
+			System.out.println("======================get sqlSessionFactory begin======================");
 			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+			System.out.println("======================get sqlSessionFactory end======================");
+			System.out.println("\n");
 		} 
 		catch (IOException e) 
 		{
@@ -31,27 +34,32 @@ public class MybatisUtil
 	}
 	
 	/**
-	 * 绂佹澶栫晫閫氳繃new鏂规硶鍒涘缓 
+	 * 禁止外界通过new方法创建 
 	 */
 	private MybatisUtil(){}
 	
 	
 	/**
-	 * 鑾峰彇SqlSession
+	 * 获取SqlSession
 	 * @return
 	 */
 	public static SqlSession getSqlSession()
 	{
-		//浠庡綋鍓嶇嚎绋嬩腑鑾峰彇SqlSession瀵硅薄
+		//从当前线程中获取SqlSession对象
 		SqlSession sqlSession = threadLocal.get();
 		
-		//濡傛灉SqlSession瀵硅薄涓虹┖
+		////如果SqlSession对象为空
 		if(sqlSession == null)
 		{
-			//鍦⊿qlSessionFactory闈炵┖鐨勬儏鍐典笅锛岃幏鍙朣qlSession瀵硅薄
-			sqlSession = sqlSessionFactory.openSession();
+			////在SqlSessionFactory非空的情况下，获取SqlSession对象
+//			sqlSession = sqlSessionFactory.openSession();
 			
-			//灏哠qlSession瀵硅薄涓庡綋鍓嶇嚎绋嬬粦瀹氬湪涓�璧�
+			System.out.println("======================get sqlSession begin======================");
+			sqlSession = sqlSessionFactory.openSession();
+			System.out.println("======================get sqlSession end======================");
+			System.out.println("\n");
+			
+			//将SqlSession对象与当前线程绑定在一起
 			threadLocal.set(sqlSession);
 		}
 		
@@ -61,16 +69,16 @@ public class MybatisUtil
 	
 	public static SqlSession getSqlSession2()
 	{
-		//浠庡綋鍓嶇嚎绋嬩腑鑾峰彇SqlSession瀵硅薄
+		//从当前线程中获取SqlSession对象
 		SqlSession sqlSession = threadLocal.get();
 		
-		//濡傛灉SqlSession瀵硅薄涓虹┖
+		////如果SqlSession对象为空
 		if(sqlSession == null)
 		{
-			//鍦⊿qlSessionFactory闈炵┖鐨勬儏鍐典笅锛岃幏鍙朣qlSession瀵硅薄
+			////在SqlSessionFactory非空的情况下，获取SqlSession对象
 			sqlSession = sqlSessionFactory.openSession(true);
 			
-			//灏哠qlSession瀵硅薄涓庡綋鍓嶇嚎绋嬬粦瀹氬湪涓�璧�
+			//将SqlSession对象与当前线程绑定在一起
 			threadLocal.set(sqlSession);
 		}
 		
@@ -79,20 +87,22 @@ public class MybatisUtil
 	
 	
 	/**
-	 * 鍏抽棴SqlSession涓庡綋鍓嶇嚎绋嬪垎寮�
+	 * 关闭SqlSession与当前线程分开
 	 */
 	public static void closeSqlSession()
 	{
-		//浠庡綋鍓嶇嚎绋嬩腑鑾峰彇SqlSession瀵硅薄
+		//从当前线程中获取SqlSession对象
 		SqlSession sqlSession = threadLocal.get();
 		
-		//濡傛灉SqlSession瀵硅薄闈炵┖
+		//如果SqlSession对象非空
 		if(sqlSession != null)
 		{
-			//鍏抽棴SqlSession瀵硅薄
+			//关闭SqlSession对象
+			System.out.println("======================get sqlSession.close() begin======================");
 			sqlSession.close();
+			System.out.println("======================get sqlSession.close() end======================");
 			
-			//鍒嗗紑褰撳墠绾跨▼涓嶴qlSession瀵硅薄鐨勫叧绯伙紝鐩殑鏄GC灏芥棭鍥炴敹
+			//分开当前线程与SqlSession对象的关系，目的是让GC尽早回收
 			threadLocal.remove();
 		}
 	}
@@ -101,6 +111,6 @@ public class MybatisUtil
 	public static void main(String[] args)
 	{
 		Connection conn = MybatisUtil.getSqlSession().getConnection();
-		System.out.println(conn!=null?"杩炴帴鎴愬姛":"杩炴帴澶辫触");
+		System.out.println(conn!=null?"连接成功":"连接失败");
 	}
 }

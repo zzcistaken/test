@@ -17,12 +17,14 @@ public class SelectOneStudent {
         System.out.println(sqlSession.getConnection().getAutoCommit());
         
         try{
+        	System.out.println("======================get selectOne begin======================");
             return sqlSession.selectOne("StudentID.findById",id);
         }catch(Exception e){
             e.printStackTrace();
             sqlSession.rollback();
             throw e;
         }finally{
+        	System.out.println("======================get selectOne end======================");
             MybatisUtil.closeSqlSession();
         }
     }

@@ -21,6 +21,7 @@ public class SimpleExecutor extends BaseExecutor {
   }
 
   public int doUpdate(MappedStatement ms, Object parameter) throws SQLException {
+	  System.out.println("SimpleExecutor -- doUpdate(...)");
     Statement stmt = null;
     try {
       Configuration configuration = ms.getConfiguration();

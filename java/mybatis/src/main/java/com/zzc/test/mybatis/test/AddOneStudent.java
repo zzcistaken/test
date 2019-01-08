@@ -9,9 +9,9 @@ public class AddOneStudent {
 	public static void main(String[] args) {
 		
 		Student s = new Student();
-        s.setId(10004);
-        s.setName("zzc-4");
-        s.setSal(104.00);
+        s.setId(10005);
+        s.setName("zzc-5");
+        s.setSal(105.00);
         
         //得到连接对象
         SqlSession sqlSession = MybatisUtil.getSqlSession();

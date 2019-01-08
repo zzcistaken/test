@@ -2,6 +2,7 @@ package com.zzc.test.mybatis.test;
 
 import com.zzc.test.mybatis.pojo.Student;
 import com.zzc.test.mybatis.util.MybatisUtil;
+import com.zzc.test.mybatis.zzz.DefaultSqlSession;
 import com.zzc.test.mybatis.zzz.SqlSession;
 
 public class AddTwoStudentSetCommit {
@@ -26,27 +27,55 @@ public class AddTwoStudentSetCommit {
         	System.out.println(sqlSession.getConnection().getAutoCommit());	//true
         	
         	//先插入一条记录，自动提交
+        	System.out.println("\n=====================add s2 begin=====================");
 	        sqlSession.insert("StudentID.add", s2);
+	        System.out.println("=====================add s2 end=====================\n");
 	        
 	        //设置commit级别为false-不自动提交，再连续插入两条记录
 	        //理论上讲，应该两条都插入失败，实际上第一条插入成功
 	        //jdbc test里面，直接使用connection，是正常的
+	        
+	        //原因在于，DefaultSqlSession里：
+	        //return (!autoCommit && dirty) || force 的布尔值为true时，才真正调用connection的rollback
+	        //autoCommit在获取sqlSession的时候赋值的，所以也需要修改它的值才行
+	        System.out.println("\n=====================set false begin=====================");
 	        sqlSession.getConnection().setAutoCommit(false);
+	        System.out.println("=====================set false end=====================\n");
+	        
+	        /*
+	         * 验证上述场景,在DefaultSqlSession里加了setAutoCommit的方法
+	         * 果然没有S3被插入数据库
+	         */
+	        if(sqlSession instanceof DefaultSqlSession) {
+	        	((DefaultSqlSession) sqlSession).setAutoCommit(false);
+	        }	        
+	        
 	        System.out.println(sqlSession.getConnection().getAutoCommit());	//false
+	        
+	        System.out.println("\n=====================add s3 begin=====================");
 	        sqlSession.insert("StudentID.add", s3);
+	        System.out.println("=====================add s3 end=====================\n");
+	        
+	        System.out.println("\n=====================add s3 begin=====================");
 	        sqlSession.insert("StudentID.add", s3);
+	        System.out.println("=====================add s3 end=====================\n");
 	        
 	        //手动提交
 	        sqlSession.commit();
 	        
-	        System.out.println("add success.");
         } catch(Exception e) {
         	e.printStackTrace();
+        	System.out.println("\n");
+        	System.out.println("=======================roll back begin=======================");
             sqlSession.rollback();
-            System.out.println("add fail");
+            System.out.println("=======================roll back end=======================");
+            System.out.println("\n");
         } finally {
+        	System.out.println("\n");
+        	System.out.println("=======================close begin=======================");
         	sqlSession.close();
-        	System.out.println("close session.");
+        	System.out.println("=======================close end=======================");
+        	System.out.println("\n");
         }
         
 	}

@@ -22,6 +22,7 @@ public class AddTwoStudentAutoCommit {
         	
         	//连续插入两条记录，一个成功，另一个失败
 	        sqlSession.insert("StudentID.add", s);
+	        System.out.println("=========================add one over=====================");
 	        sqlSession.insert("StudentID.add", s);
 	        
 	        //手动提交
@@ -30,11 +31,17 @@ public class AddTwoStudentAutoCommit {
 	        System.out.println("add success.");
         } catch(Exception e) {
         	e.printStackTrace();
+        	System.out.println("\n");
+        	System.out.println("=======================roll back begin=======================");
             sqlSession.rollback();
-            System.out.println("add fail");
+            System.out.println("=======================roll back end=======================");
+            System.out.println("\n");
         } finally {
+        	System.out.println("\n");
+        	System.out.println("=======================close begin=======================");
         	sqlSession.close();
-        	System.out.println("close session.");
+        	System.out.println("=======================close begin=======================");
+        	System.out.println("\n");
         }
         
 	}
