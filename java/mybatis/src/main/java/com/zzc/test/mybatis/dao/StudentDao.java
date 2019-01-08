@@ -4,15 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.session.SqlSession;
-
 import com.zzc.test.mybatis.pojo.Student;
 import com.zzc.test.mybatis.util.MybatisUtil;
+import com.zzc.test.mybatis.zzz.SqlSession;
 
 public class StudentDao 
 {
 	public void add(Student student) throws Exception {
-        //得到连接对象
+        //寰楀埌杩炴帴瀵硅薄
         SqlSession sqlSession = MybatisUtil.getSqlSession2();
         
         System.out.println(sqlSession.getConnection().getAutoCommit());
@@ -21,7 +20,7 @@ public class StudentDao
         
         try
         {
-	        //映射文件的命名空间.SQL片段的ID，就可以调用对应的映射文件中的SQL
+	        //鏄犲皠鏂囦欢鐨勫懡鍚嶇┖闂�.SQL鐗囨鐨処D锛屽氨鍙互璋冪敤瀵瑰簲鐨勬槧灏勬枃浠朵腑鐨凷QL
 	        sqlSession.insert("StudentID.add", student);
 	        sqlSession.insert("StudentID.add", student);
 	        sqlSession.commit();
@@ -43,7 +42,7 @@ public class StudentDao
 	
 	public void add2(Student student) throws Exception 
 	{
-        //得到连接对象
+        //寰楀埌杩炴帴瀵硅薄
         SqlSession sqlSession = MybatisUtil.sqlSessionFactory.openSession(true);
         
         System.out.println(sqlSession.getConnection().hashCode());
@@ -56,7 +55,7 @@ public class StudentDao
         
         try
         {
-	        //映射文件的命名空间.SQL片段的ID，就可以调用对应的映射文件中的SQL
+	        //鏄犲皠鏂囦欢鐨勫懡鍚嶇┖闂�.SQL鐗囨鐨処D锛屽氨鍙互璋冪敤瀵瑰簲鐨勬槧灏勬枃浠朵腑鐨凷QL
 	        sqlSession.insert("StudentID.add", student);
 	        
 	        System.out.println("===============================================");
@@ -64,7 +63,7 @@ public class StudentDao
 	        student.setName("zzc-2");
 	        sqlSession.insert("StudentID.add", student);
 	        
-	        //手动提交
+	        //鎵嬪姩鎻愪氦
 	        sqlSession.commit();
         }
         catch(Exception e)
@@ -90,13 +89,13 @@ public class StudentDao
 	
 	public Student findById(int id) throws Exception 
 	{
-        //得到连接对象
+        //寰楀埌杩炴帴瀵硅薄
         SqlSession sqlSession = MybatisUtil.getSqlSession();
         
         System.out.println(sqlSession.getConnection().getAutoCommit());
         
         try{
-            //映射文件的命名空间.SQL片段的ID，就可以调用对应的映射文件中的SQL
+            //鏄犲皠鏂囦欢鐨勫懡鍚嶇┖闂�.SQL鐗囨鐨処D锛屽氨鍙互璋冪敤瀵瑰簲鐨勬槧灏勬枃浠朵腑鐨凷QL
             return sqlSession.selectOne("StudentID.findById",id);
         }catch(Exception e){
             e.printStackTrace();
@@ -109,10 +108,10 @@ public class StudentDao
 	
 	
 	public List<Student> findAll() throws Exception {
-        //得到连接对象
+        //寰楀埌杩炴帴瀵硅薄
         SqlSession sqlSession = MybatisUtil.getSqlSession();
         try{
-            //映射文件的命名空间.SQL片段的ID，就可以调用对应的映射文件中的SQL
+            //鏄犲皠鏂囦欢鐨勫懡鍚嶇┖闂�.SQL鐗囨鐨処D锛屽氨鍙互璋冪敤瀵瑰簲鐨勬槧灏勬枃浠朵腑鐨凷QL
             return sqlSession.selectList("StudentID.findAll");
         }catch(Exception e){
             e.printStackTrace();
@@ -125,10 +124,10 @@ public class StudentDao
 	
 	
 	public void update(Student student ) throws Exception {
-        //得到连接对象
+        //寰楀埌杩炴帴瀵硅薄
         SqlSession sqlSession = MybatisUtil.getSqlSession();
         try{
-            //映射文件的命名空间.SQL片段的ID，就可以调用对应的映射文件中的SQL
+            //鏄犲皠鏂囦欢鐨勫懡鍚嶇┖闂�.SQL鐗囨鐨処D锛屽氨鍙互璋冪敤瀵瑰簲鐨勬槧灏勬枃浠朵腑鐨凷QL
             sqlSession.update("StudentID.update", student);
             sqlSession.commit();
         }catch(Exception e){
@@ -142,10 +141,10 @@ public class StudentDao
 	
 	
 	public void delete(int id ) throws Exception {
-        //得到连接对象
+        //寰楀埌杩炴帴瀵硅薄
         SqlSession sqlSession = MybatisUtil.getSqlSession();
         try{
-            //映射文件的命名空间.SQL片段的ID，就可以调用对应的映射文件中的SQL
+            //鏄犲皠鏂囦欢鐨勫懡鍚嶇┖闂�.SQL鐗囨鐨処D锛屽氨鍙互璋冪敤瀵瑰簲鐨勬槧灏勬枃浠朵腑鐨凷QL
             sqlSession.delete("StudentID.delete", id);
             sqlSession.commit();
         }catch(Exception e){
@@ -159,15 +158,15 @@ public class StudentDao
 	
 	
 	public List<Student>  pagination(int start ,int end) throws Exception {
-        //得到连接对象
+        //寰楀埌杩炴帴瀵硅薄
         SqlSession sqlSession = MybatisUtil.getSqlSession();
         try{
-            //映射文件的命名空间.SQL片段的ID，就可以调用对应的映射文件中的SQL
+            //鏄犲皠鏂囦欢鐨勫懡鍚嶇┖闂�.SQL鐗囨鐨処D锛屽氨鍙互璋冪敤瀵瑰簲鐨勬槧灏勬枃浠朵腑鐨凷QL
 
 
             /**
-             * 由于我们的参数超过了两个，而方法中只有一个Object参数收集
-             * 因此我们使用Map集合来装载我们的参数
+             * 鐢变簬鎴戜滑鐨勫弬鏁拌秴杩囦簡涓や釜锛岃�屾柟娉曚腑鍙湁涓�涓狾bject鍙傛暟鏀堕泦
+             * 鍥犳鎴戜滑浣跨敤Map闆嗗悎鏉ヨ杞芥垜浠殑鍙傛暟
              */
             Map<String, Object> map = new HashMap();
             map.put("start", start);
@@ -184,13 +183,13 @@ public class StudentDao
 	
 	
 	public List<Student> findByCondition(String name,Double sal) throws Exception {
-        //得到连接对象
+        //寰楀埌杩炴帴瀵硅薄
         SqlSession sqlSession = MybatisUtil.getSqlSession();
         try{
-            //映射文件的命名空间.SQL片段的ID，就可以调用对应的映射文件中的SQL
+            //鏄犲皠鏂囦欢鐨勫懡鍚嶇┖闂�.SQL鐗囨鐨処D锛屽氨鍙互璋冪敤瀵瑰簲鐨勬槧灏勬枃浠朵腑鐨凷QL
             /**
-             * 由于我们的参数超过了两个，而方法中只有一个Object参数收集
-             * 因此我们使用Map集合来装载我们的参数
+             * 鐢变簬鎴戜滑鐨勫弬鏁拌秴杩囦簡涓や釜锛岃�屾柟娉曚腑鍙湁涓�涓狾bject鍙傛暟鏀堕泦
+             * 鍥犳鎴戜滑浣跨敤Map闆嗗悎鏉ヨ杞芥垜浠殑鍙傛暟
              */
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("name", name);
@@ -207,13 +206,13 @@ public class StudentDao
 	
 	
 	public void updateByConditions(int id,String name,Double sal) throws Exception {
-        //得到连接对象
+        //寰楀埌杩炴帴瀵硅薄
         SqlSession sqlSession = MybatisUtil.getSqlSession();
         try{
-            //映射文件的命名空间.SQL片段的ID，就可以调用对应的映射文件中的SQL
+            //鏄犲皠鏂囦欢鐨勫懡鍚嶇┖闂�.SQL鐗囨鐨処D锛屽氨鍙互璋冪敤瀵瑰簲鐨勬槧灏勬枃浠朵腑鐨凷QL
             /**
-             * 由于我们的参数超过了两个，而方法中只有一个Object参数收集
-             * 因此我们使用Map集合来装载我们的参数
+             * 鐢变簬鎴戜滑鐨勫弬鏁拌秴杩囦簡涓や釜锛岃�屾柟娉曚腑鍙湁涓�涓狾bject鍙傛暟鏀堕泦
+             * 鍥犳鎴戜滑浣跨敤Map闆嗗悎鏉ヨ杞芥垜浠殑鍙傛暟
              */
             Map<String, Object> map = new HashMap();
             map.put("id", id);

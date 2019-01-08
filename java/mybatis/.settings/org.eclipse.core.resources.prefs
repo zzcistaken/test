@@ -1,2 +1,8 @@
 eclipse.preferences.version=1
-encoding/<project>=UTF-8
+encoding//src/main/java/com/zzc/test/mybatis/dao/StudentDao.java=UTF-8
+encoding//src/main/java/com/zzc/test/mybatis/test/AddOneStudent.java=UTF-8
+encoding//src/main/java/com/zzc/test/mybatis/test/AddTwoStudent.java=UTF-8
+encoding//src/main/java/com/zzc/test/mybatis/test/AddTwoStudentAutoCommit.java=UTF-8
+encoding//src/main/java/com/zzc/test/mybatis/test/AddTwoStudentSetCommit.java=UTF-8
+encoding//src/main/java/com/zzc/test/mybatis/test/SelectOneStudent.java=UTF-8
+encoding//src/main/java/com/zzc/test/mybatis/util/MybatisUtil.java=UTF-8

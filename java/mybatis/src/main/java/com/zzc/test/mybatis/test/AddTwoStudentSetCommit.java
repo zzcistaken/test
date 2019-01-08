@@ -1,9 +1,8 @@
 package com.zzc.test.mybatis.test;
 
-import org.apache.ibatis.session.SqlSession;
-
 import com.zzc.test.mybatis.pojo.Student;
 import com.zzc.test.mybatis.util.MybatisUtil;
+import com.zzc.test.mybatis.zzz.SqlSession;
 
 public class AddTwoStudentSetCommit {
 
@@ -26,7 +25,7 @@ public class AddTwoStudentSetCommit {
         	//设置commit级别是true-自动提交
         	System.out.println(sqlSession.getConnection().getAutoCommit());	//true
         	
-	        //先插入一条记录，自动提交
+        	//先插入一条记录，自动提交
 	        sqlSession.insert("StudentID.add", s2);
 	        
 	        //设置commit级别为false-不自动提交，再连续插入两条记录
