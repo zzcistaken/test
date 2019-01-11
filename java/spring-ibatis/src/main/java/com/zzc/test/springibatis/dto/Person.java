@@ -1,4 +1,4 @@
-package ajdbc.bean;
+package com.zzc.test.springibatis.dto;
 
 public class Person {
 	private Long id;

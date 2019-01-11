@@ -1,10 +1,10 @@
-package ajdbc.service;
+package com.zzc.test.springibatis.dao;
 
 import java.util.List;
 
-import ajdbc.bean.Person;
+import com.zzc.test.springibatis.dto.Person;
 
-public interface FootBallService {
+public interface PersonDao {
 	public void insert(Person person);
     public Person queryById(Integer id);
     public List<Person> queryAll();

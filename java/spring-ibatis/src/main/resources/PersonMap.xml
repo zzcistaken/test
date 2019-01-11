@@ -3,7 +3,7 @@
     "http://www.ibatis.com/dtd/sql-map-2.dtd">
  
 <sqlMap namespace="personiBatis">
-    <typeAlias alias="person1" type="ajdbc.bean.Person" />
+    <typeAlias alias="person1" type="com.zzc.test.springibatis.dto.Person" />
     
     <sql id="Select_Field_Clause">
         id,
@@ -16,10 +16,7 @@
     </resultMap>
     
     <insert id="insert" parameterClass="person1">
-        <selectKey resultClass="java.lang.Long" keyProperty="id">
-   SELECT PERSON_SEQ.nextval FROM DUAL
-  </selectKey>
-        insert into person(id, name) values(#id:DECIMAL#, #name:VARCHAR#)
+        insert into person(id, name) values(#id#, #name#)
     </insert>
     
     <select id="find" parameterClass="java.util.Map" resultMap="person-result">

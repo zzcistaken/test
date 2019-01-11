@@ -1,16 +1,14 @@
-package ajdbc.service.impl;
+package com.zzc.test.springibatis.dao.impl;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.orm.ibatis.SqlMapClientTemplate;
+import com.zzc.test.springibatis.dao.PersonDao;
+import com.zzc.test.springibatis.dto.Person;
+import com.zzc.test.springibatis.zzz.SqlMapClientTemplate;
 
-import ajdbc.bean.Person;
-import ajdbc.service.FootBallService;
-
-
-public class FootBallServiceImpl101iBatis implements FootBallService {
+public class PersonDaoImpl implements PersonDao {
 	
 	private SqlMapClientTemplate sqlMapClientTemplate;
 	
