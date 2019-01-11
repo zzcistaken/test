@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">  
+  
+<sqlMap namespace="Test">  
+  
+    <statement id="insert_student"  
+        parameterClass="com.zzc.test.ibatis.StudentDto">  
+        insert into student(  
+        id,name,age,sex,address) values(  
+        #id#,#name#,#age#,#sex#,#address# )  
+    </statement>  
+  
+    <statement id="delete_all_student" 
+        parameterClass="com.zzc.test.ibatis.StudentDto">  
+        delete from student  
+    </statement>  
+  
+    <statement id="deleteByID_student"   
+        parameterClass="com.zzc.test.ibatis.StudentDto">  
+        delete from student where   
+        id = #id#  
+    </statement>  
+      
+    <statement id="updataStudent_test"   
+        parameterClass="com.zzc.test.ibatis.StudentDto">  
+        update student set   
+        name=#name#,sex=#sex#,age=#age#,address=#address#   
+        where id = #id#  
+    </statement>    
+      
+    <statement id="select_all_student"  
+        resultClass="com.zzc.test.ibatis.StudentDto">  
+        select * from student order by id  
+    </statement>  
+      
+    <statement id="selectByID_student"  
+        parameterClass="com.zzc.test.ibatis.StudentDto"  
+        resultClass="com.zzc.test.ibatis.StudentDto">  
+        select * from student   
+        where id = #id#   
+        order by id  
+    </statement>        
+</sqlMap>
