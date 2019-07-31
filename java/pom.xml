@@ -6,5 +6,8 @@
   <packaging>pom</packaging>
   <modules>
   	<module>mybatis</module>
+  	<module>spring-ibatis</module>
+  	<module>ibatis</module>
+  	<module>data-structure</module>
   </modules>
 </project>

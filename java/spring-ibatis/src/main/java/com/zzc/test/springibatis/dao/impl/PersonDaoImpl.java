@@ -1,5 +1,6 @@
 package com.zzc.test.springibatis.dao.impl;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,4 +31,12 @@ public class PersonDaoImpl implements PersonDao {
 	 public List<Person> queryAll() {
 		return (List<Person>)sqlMapClientTemplate.queryForList("personiBatis.find", null);
 	 }
+	
+	public void commit () throws SQLException {
+		sqlMapClientTemplate.getSqlMapClient().commitTransaction();
+	}
+	
+	public void start () throws SQLException {
+		sqlMapClientTemplate.getSqlMapClient().startTransaction();
+	}
 }

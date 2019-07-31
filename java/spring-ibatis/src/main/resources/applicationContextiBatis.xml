@@ -19,6 +19,20 @@
       <property name="maxActive" value="${maxActive}" />
       <property name="minIdle" value="${minIdle}" />
       <property name="maxIdle" value="${maxIdle}" />
+      <property name="defaultAutoCommit" value="true" />
+  </bean>
+  
+  <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+  	<property name="dataSource" ref="dataSource"></property>
+  </bean>
+  
+  <bean id="demo" class="com.zzc.test.springibatis.demo.Demo" init-method="init">
+  	<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+  	<property name="transManager" ref="transManager"></property>
+  </bean>
+  
+  <bean id="transManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+  	<property name="dataSource" ref="dataSource"></property>
   </bean>
  
 <!--   <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean"> -->
